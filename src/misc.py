@@ -1,5 +1,10 @@
 import re
+import subprocess
 import random
+import os 
+import hashlib
+import hmac
+import struct
 
 def banner():
     print(r"""
@@ -96,3 +101,59 @@ def is_valid_csharp_classname(name):
         return False
     
     return True
+
+def run_cmd(command)-> tuple[str|bytes, str|bytes, int]:
+    """
+        Run a command and returns the stdout, stderr, retcode
+        obtained as a result of running the provided command
+    """
+    retcode = 0
+    stdout = None
+    stderr = None
+    with subprocess.Popen(
+        command,
+        shell=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        stdin=subprocess.PIPE) as proc:
+        stdout, stderr = proc.communicate()
+        retcode = proc.returncode
+
+    return stdout.decode('utf-8'), stderr.decode('utf-8'), retcode
+
+def run_cmd_check_file(cmd: str, file: str):
+    """Check if a file is created after running a cmd, if not, throw an exception"""
+    stdout, stderr, retcode = run_cmd(cmd)
+    
+    # Verify launcher has been added 
+    if not os.path.exists(file):
+        print(f"[-] Failed to add Launcher.exe: `{cmd}` returned the following:")
+        print(f"[-] Stdout:\n{stdout}")
+        print(f"[-] Stderr:\n{stderr}")
+        print(f"[-] Retcode:\n{retcode}")
+        raise Exception(f"Command `{cmd}` failed to produce `{file}`")
+    
+def get_api_hash(value: str, key: int):
+    """
+    Generate an HMAC-MD5 hash of the supplied string using an Int64 as the key. 
+    This is useful for unique hash based API lookups.
+    
+    Args:
+        value (str): String to hash.
+        key (int): 64-bit integer to initialize the keyed hash object 
+                  (e.g. 0xabc or 0x1122334455667788).
+    
+    Returns:
+        str: The computed MD5 hash value as uppercase hex string.
+    """
+    # Convert string to lowercase and encode as UTF-8
+    data = value.lower().encode('utf-8')
+    
+    # Convert 64-bit integer to bytes (little-endian, matching C# BitConverter)
+    key_bytes = struct.pack('<q', key)
+    
+    # Create HMAC-MD5 hash
+    hash_obj = hmac.new(key_bytes, data, hashlib.md5)
+    
+    # Get the hash bytes and convert to uppercase hex string without separators
+    return hash_obj.hexdigest().upper()

